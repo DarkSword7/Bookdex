@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+<section>
+  <h2>Results for "{{ query }}"</h2>
+  {% if books %}
+  <ul class="book-list">
+    {% for book in books %}
+    <li class="book-card">
+      {% if book.thumbnail %}
+      <img src="{{ book.thumbnail }}" alt="{{ book.title }} cover" />
+      {% endif %}
+      <h3>{{ book.title }}</h3>
+      <p><strong>Authors:</strong> {{ book.authors }}</p>
+      <p>
+        {{ book.description[:100] }}{% if book.description|length > 100 %}...{%
+        endif %}
+      </p>
+      <a href="{{ url_for('main.read_book', link=book.link) }}">Read Online</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No books found for "{{ query }}". Please try again.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block content %}
+<section class="reader-container">
+  <h2>Book Reader</h2>
+
+  <!-- Table of Contents (Optional) -->
+  <div class="toc">
+    <h3>Table of Contents</h3>
+    <p><a href="{{ book_url }}" target="_blank">View book directly</a></p>
+  </div>
+
+  <!-- Embed the Book in an iframe -->
+  <div class="reader">
+    <iframe
+      src="{{ book_url }}"
+      width="100%"
+      height="600px"
+      frameborder="0"
+      style="border-radius: 8px"
+    ></iframe>
+  </div>
+</section>
+
+<style>
+  .reader-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .reader {
+    margin-top: 20px;
+  }
+
+  iframe {
+    width: 100%;
+    height: 600px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+</style>
+{% endblock %}
