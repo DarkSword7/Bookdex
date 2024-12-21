@@ -10,6 +10,14 @@ main_bp = Blueprint("main", __name__)
 def index():
     return render_template("index.html")
 
+@main_bp.route("/search", methods=["GET"])
+def search():
+    query = request.args.get("q", "")
+    if not query:
+        return render_template("index.html", error="Please enter a search term.")
+    books = fetch_books(query)
+    return render_template("results.html", books=books, query=query)
+
 @main_bp.route('/read')
 def read_book():
     book_link = request.args.get('link')
